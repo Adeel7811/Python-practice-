@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+home
+{% endblock %}
+
+{% block content %}
+<h1>Wellcome Here!</h1>
+{% comment %} <form action="">
+    <input type="text" name="search" placeholder="Search a student here">
+    <button type="submit">Search</button>
+</form>
+{% for result in results %}
+<p>{{result.field}}</p>
+{% endfor %} {% endcomment %}
+<div>
+    <table class="table m-20px b-black table-bordered ">
+        <tr>
+            <th>Student Name</th>
+            <th>Roll no</th>
+            <th>Department</th>
+            <th>Email</th>
+        </tr>
+        {% for items in student %}
+        <tr>
+            <td>{{items.name}}</td>
+            <td>{{items.rollno}}</td>
+            <td>{{items.department}}</td>
+            <td>{{items.email}}</td>
+            <td><a href="{% url 'update_student' items.id%}"><button type="submit" class="btn bg-primary">update</button></a></td>
+            <td><a href="{% url 'delete_student' items.id%}"><button type="submit" class="btn bg-danger">delete</button></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<a href="{% url 'create_student'%}"><button type="submit" class="btn bg-primary">Create Student</button></a>
+
+{% endblock %}
